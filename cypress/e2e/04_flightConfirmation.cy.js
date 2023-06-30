@@ -3,10 +3,10 @@ import HomePage from "../Pages/01_homePage.cy"
 let homePage = new HomePage
 
 beforeEach(() => {
-    homePage.visitWebsite()
+    cy.visit('')
 })
 
-it('Should successfully purchase a flight', () => {
+it('Should successfully show confirmation page header', () => {
     homePage
         .selectDepartureCity()
         .selectDestinationCity()
@@ -24,6 +24,7 @@ it('Should successfully purchase a flight', () => {
         .typeCardMonth()
         .typeCardYear()
         .checkRememberMe()
-        .clickPurchaseFlight()  
-        .confirmationPageUrl()      
+        .clickPurchaseFlight()
+        .confirmationPageUrl()
+        .confirmationPageHeader()
 })

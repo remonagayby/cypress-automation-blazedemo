@@ -1,4 +1,4 @@
-import HomePage from "../Pages/homePage.cy"
+import HomePage from "../Pages/01_homePage.cy"
 
 let homePage = new HomePage
 
@@ -11,15 +11,19 @@ it('Should header have departure and destination city names', () => {
         .selectDepartureCity()
         .selectDestinationCity()
         .clickFindFlights()
+        .assertReservePageUrl()
         .assertReservationPageHeader()
         .assertCitiesName()
 })
 
-it.only('Should select lowest price', () => {
+it('Should select lowest price', () => {
     homePage
         .selectDepartureCity()
         .selectDestinationCity()
         .clickFindFlights()
+        .assertReservePageUrl()
+        .assertReservationPageHeader()
+        .assertCitiesName()
         .selectLowestPrice()
         .assertPurchasePageUrl()      
 })

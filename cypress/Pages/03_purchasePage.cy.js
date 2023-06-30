@@ -1,7 +1,8 @@
 import {faker} from '@faker-js/faker';
-import ConfirmationPage from './confirmationPage.cy';
+import ConfirmationPage from './04_confirmationPage.cy';
 
 class PurchasePage {
+    
     // get the purchase page url
     get purchasePageUrl() {
         return cy.url()
@@ -73,37 +74,66 @@ class PurchasePage {
 
     }
 
+    // assert the page page url
+    assertPurchasePageUrl() {
+        cy.fixture("data").then(data => {
+            this.purchasePageUrl.should('eq', data.purchasePageUrl)
+        })
+
+        return new PurchasePage
+    }
+
     // type a random name in the name field
     typeName() {
-        this.nameField.type(faker.person.fullName())
+        // assert the name field placeholder value
+        this.nameField.should('have.attr','placeholder', 'First Last')
+
+        // type a random name
+        .type(faker.person.fullName())
 
         return new PurchasePage
     }
 
     //type a random address in the address field
     typeAddress() {
-        this.addressField.type(faker.location.streetAddress())
+        // assert the address field placeholder value
+        this.addressField.should('have.attr', 'placeholder', '123 Main St.')
+
+        // type a random address
+        .type(faker.location.streetAddress())
 
         return new PurchasePage
     }
 
-    // type a random address in the address field
+    // type a random city in the address field
     typeCity() {
-        this.cityField.type(faker.location.city())
+        // assert the city field placeholder value
+        this.cityField.should('have.attr', 'placeholder', 'Anytown')
+
+        // type a random city
+        .type(faker.location.city())
 
         return new PurchasePage
     }
 
     // type a random state in the state field
     typeState() {
-        this.stateField.type(faker.location.state())
+        // assert the state field placeholder value
+        this.stateField.should('have.attr', 'placeholder', 'State')
+
+        // type a random state
+        .type(faker.location.state())
 
         return new PurchasePage
     }
 
     // type a random state in the state field
     typeZipCode() {
-        this.zipCodeField.type(faker.location.zipCode())
+        // assert the zip code field palceholder value
+        this.zipCodeField.should('have.attr', 'placeholder', '12345')
+
+        // type a random zip code
+        .type(faker.location.zipCode())
 
         return new PurchasePage
     }
@@ -128,21 +158,43 @@ class PurchasePage {
 
     // type a random credit card number
     typeCardNumber() {
-        this.creditCardNumber.type(faker.finance.creditCardNumber())
+        // assert credit card number placeholder value
+        this.creditCardNumber.should('have.attr', 'placeholder', 'Credit Card Number')
+
+        // type a random credit card number
+        .type(faker.finance.creditCardNumber())
+
+        // Store the typed credit card number as an alias
+        .invoke('val').as('creditCardNumber')
+
 
         return new PurchasePage
     }
 
     // type a random credit card month
     typeCardMonth() {
-        this.creditCardMonth.type(faker.date.month)
+        // assert the credit card month value
+        this.creditCardMonth.should('have.attr', 'value', '11')
+
+        // clear the placeholder value
+        .clear()
+
+        // type a random credit card month and parse it to string
+        .type((faker.number.bigInt({min: 1, max: 12})).toString())
 
         return new PurchasePage
     }
 
     // type a random credit card year
-    typeCardMonth() {
-        this.creditCardMonth.type(faker.date.month)
+    typeCardYear() {
+        // assert the credit cadr year placeholder value
+        this.creditCardYear.should('have.attr', 'value', '2017')
+
+        // clear the placeholder value
+        .clear()
+
+        // type a random year from 2017 to 2028
+        .type((faker.number.bigInt({min: 2017, max:2028})).toString())
 
         return new PurchasePage
     }
@@ -150,15 +202,6 @@ class PurchasePage {
     // type the name on card 
     typeCardName() {
         this.nameOnCard.type('@creditCardName')
-
-        return new PurchasePage
-    }
-
-
-
-    // assert the page page url
-    assertPurchasePageUrl() {
-        this.purchasePageUrl.should('eq', 'https://blazedemo.com/purchase.php')
 
         return new PurchasePage
     }

@@ -1,4 +1,4 @@
-import HomePage from "../Pages/homePage.cy"
+import HomePage from "../Pages/01_homePage.cy"
 
 let homePgae = new HomePage
 
@@ -11,6 +11,7 @@ it('Should select a flight', () => {
     .selectDepartureCity()
     .selectDestinationCity()
     .clickFindFlights()
+    .assertReservePageUrl()
 })
 
 
