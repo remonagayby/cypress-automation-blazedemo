@@ -166,8 +166,7 @@ class PurchasePage {
 
         // Store the typed credit card number as an alias
         .invoke('val').as('creditCardNumber')
-
-
+        
         return new PurchasePage
     }
 
@@ -182,6 +181,9 @@ class PurchasePage {
         // type a random credit card month and parse it to string
         .type((faker.number.bigInt({min: 1, max: 12})).toString())
 
+        // store the typed credit card expiration month as an aliases
+        .invoke('val').as('cardExpirationMonth')
+
         return new PurchasePage
     }
 
@@ -195,6 +197,9 @@ class PurchasePage {
 
         // type a random year from 2017 to 2028
         .type((faker.number.bigInt({min: 2017, max:2028})).toString())
+
+        // store the typed credit card expiration year as an aliases
+        .invoke('val').as('cardExpirationYear')
 
         return new PurchasePage
     }

@@ -3,7 +3,7 @@ import HomePage from "../Pages/01_homePage.cy"
 let homePage = new HomePage
 
 beforeEach(() => {
-    cy.visit('')
+    homePage.visitWebsite()
 })
 
 it('Should successfully show confirmation page header', () => {
@@ -27,4 +27,24 @@ it('Should successfully show confirmation page header', () => {
         .clickPurchaseFlight()
         .confirmationPageUrl()
         .confirmationPageHeader()
+})
+
+it.only('Should flight price equal to the price we selected', () => {
+    homePage
+        .selectDepartureCity()
+        .selectDestinationCity()
+        .clickFindFlights()
+        .selectLowestPrice()
+        .typeName()
+        .typeAddress()
+        .typeCity()
+        .typeState()
+        .typeZipCode()
+        .randomCardType()
+        .typeCardNumber()
+        .typeCardMonth()
+        .typeCardYear()
+        .checkRememberMe()
+        .clickPurchaseFlight()
+        .flightData()
 })
