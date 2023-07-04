@@ -6,7 +6,7 @@ beforeEach(() => {
     homePage.visitWebsite()
 })
 
-it('Should header have departure and destination city names', () => {
+it('Should the header have departure and destination city names', () => {
     homePage
         .selectDepartureCity()
         .selectDestinationCity()

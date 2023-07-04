@@ -6,7 +6,19 @@ beforeEach(() => {
     homePage.visitWebsite()
 })
 
-it('Should successfully purchase a flight', () => {
+it('Should not be able to purchase a flight without enter valid data fields', () => {
+    homePage
+        .selectDepartureCity()
+        .selectDestinationCity()
+        .clickFindFlights()
+        .assertReservePageUrl()
+        .selectLowestPrice()
+        .assertPurchasePageUrl()
+        .clickPurchaseFlight()  
+        .assertPurchasePageUrl()   
+})
+
+it('Should be able to enter valid data fields and purchase a flight', () => {
     homePage
         .selectDepartureCity()
         .selectDestinationCity()
@@ -25,5 +37,5 @@ it('Should successfully purchase a flight', () => {
         .typeCardYear()
         .checkRememberMe()
         .clickPurchaseFlight()  
-        .confirmationPageUrl()      
+        .assertConfirmationPageUrl()   
 })

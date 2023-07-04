@@ -80,7 +80,7 @@ class PurchasePage {
             this.purchasePageUrl.should('eq', data.purchasePageUrl)
         })
 
-        return new PurchasePage
+        return this
     }
 
     // type a random name in the name field
@@ -91,7 +91,7 @@ class PurchasePage {
         // type a random name
         .type(faker.person.fullName())
 
-        return new PurchasePage
+        return this
     }
 
     //type a random address in the address field
@@ -102,7 +102,7 @@ class PurchasePage {
         // type a random address
         .type(faker.location.streetAddress())
 
-        return new PurchasePage
+        return this
     }
 
     // type a random city in the address field
@@ -113,7 +113,7 @@ class PurchasePage {
         // type a random city
         .type(faker.location.city())
 
-        return new PurchasePage
+        return this
     }
 
     // type a random state in the state field
@@ -124,7 +124,7 @@ class PurchasePage {
         // type a random state
         .type(faker.location.state())
 
-        return new PurchasePage
+        return this
     }
 
     // type a random state in the state field
@@ -135,7 +135,7 @@ class PurchasePage {
         // type a random zip code
         .type(faker.location.zipCode())
 
-        return new PurchasePage
+        return this
     }
 
     // select a random payment card type
@@ -153,7 +153,7 @@ class PurchasePage {
             cy.wrap(dropdown).select(options[randomIndex].value);
           })
 
-          return new PurchasePage
+          return this
     }
 
     // type a random credit card number
@@ -161,13 +161,16 @@ class PurchasePage {
         // assert credit card number placeholder value
         this.creditCardNumber.should('have.attr', 'placeholder', 'Credit Card Number')
 
+        // generate a random credit card number
+        const cardNumber = faker.finance.creditCardNumber()
+
         // type a random credit card number
-        .type(faker.finance.creditCardNumber())
+        this.creditCardNumber.type(cardNumber)
 
         // Store the typed credit card number as an alias
-        .invoke('val').as('creditCardNumber')
+        cy.wrap(cardNumber.slice(-4)).as('creditCardNumber')
         
-        return new PurchasePage
+        return this
     }
 
     // type a random credit card month
@@ -184,7 +187,7 @@ class PurchasePage {
         // store the typed credit card expiration month as an aliases
         .invoke('val').as('cardExpirationMonth')
 
-        return new PurchasePage
+        return this
     }
 
     // type a random credit card year
@@ -201,7 +204,7 @@ class PurchasePage {
         // store the typed credit card expiration year as an aliases
         .invoke('val').as('cardExpirationYear')
 
-        return new PurchasePage
+        return this
     }
 
     // type the name on card 
@@ -215,7 +218,7 @@ class PurchasePage {
     assertPurchaseageHeader() {
         this.purchasePageHeader.should('contain', 'Your flight from').and('contain', 'has been reserved.')
 
-        return new PurchasePage
+        return this
     }
 
     // assert the departure and destination city names in the header
@@ -229,14 +232,14 @@ class PurchasePage {
             cy.get('@destinationCityName').should('contain', toCity)
         })
 
-        return new PurchasePage
+        return this
     }
 
     // check on remember me checkbox
     checkRememberMe() {
         this.rememberMeBox.check()
 
-        return new PurchasePage
+        return this
     }
 
     // click on purchase flight button

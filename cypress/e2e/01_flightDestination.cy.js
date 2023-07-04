@@ -6,7 +6,7 @@ beforeEach(() => {
   homePgae.visitWebsite()
 })
 
-it('Should select a flight', () => {
+it('Should be able to select a flight', () => {
   homePgae
     .selectDepartureCity()
     .selectDestinationCity()

@@ -21,13 +21,13 @@ class ReservationPage {
             this.pageUrl.should('eq', data.reservationPageUrl)
         })
 
-        return new ReservationPage
+        return this
     }
     assertReservationPageHeader() {
         this.reservationPageHeader
             .should('contain', 'Flights from').and('contain', 'to')
 
-        return new ReservationPage
+        return this
     }
 
     selectLowestPrice() {
@@ -52,21 +52,6 @@ class ReservationPage {
       cy.get('input[type="submit"]').click();
     })
   })
-        // const prices = [];
-
-        // cy.get('tbody tr').each(($row) => {
-        //   const price = parseFloat($row.find('td:nth-child(7)').text().replace('$', ''));
-        //   prices.push(price);
-        // }).then(() => {
-        //   const lowestPrice = Math.min(...prices);
-        
-        //   // Find the row with the lowest price
-        //   cy.get('tbody tr').contains(`$${lowestPrice.toFixed(2)}`).parent().within(() => {
-        //     // Click the "Choose This Flight" button
-        //     cy.get('input[type="submit"]').click();
-        //   });
-        // });
-
        return new PurchasePage
     }
 
@@ -80,7 +65,7 @@ class ReservationPage {
                 cy.get('@destinationCityName').should('contain', toCity)
             })
 
-        return new ReservationPage
+        return this
     }
 }
 

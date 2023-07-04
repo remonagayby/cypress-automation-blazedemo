@@ -16,7 +16,7 @@ class HomePage {
     visitWebsite() {
         cy.visit('/')
 
-        return new HomePage
+        return this
     }
 
     selectDepartureCity() {
@@ -39,7 +39,7 @@ class HomePage {
             })
           })
 
-        return new HomePage
+        return this
     }
 
     selectDestinationCity() {
@@ -63,7 +63,7 @@ class HomePage {
             })
           })
 
-        return new HomePage
+        return this
     }
 
     clickFindFlights() {
