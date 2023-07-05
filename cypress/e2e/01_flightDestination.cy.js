@@ -1,19 +1,15 @@
-import HomePage from "../Pages/01_homePage.cy"
+import HomePage from "../Pages/01_homePage.cy";
 
-let homePgae = new HomePage
+let homePgae = new HomePage();
 
 beforeEach(() => {
-  homePgae.visitWebsite()
-})
+  homePgae.visitWebsite();
+});
 
-it('Should be able to select a flight', () => {
+it("Should be able to select a flight", () => {
   homePgae
     .selectDepartureCity()
     .selectDestinationCity()
     .clickFindFlights()
-    .assertReservePageUrl()
-})
-
-
-
-
+    .assertReservePageUrl();
+});
